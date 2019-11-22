@@ -41,14 +41,6 @@
         "codecov": "codecov",
         "postinstall": "node scripts/postinstall || echo \"ignore\""
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/vueComponent/ant-design-vue.git"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/vueComponent/ant-design-vue/issues"
-    },
     "homepage": "https://vue.ant.design/",
     "husky": {
         "hooks": {
@@ -155,7 +147,7 @@
         "through2": "^2.0.3",
         "uglifyjs-webpack-plugin": "^2.1.1",
         "url-loader": "^1.1.2",
-        "vue": "^2.6.6",
+        "vue": "^2.6.10",
         "vue-antd-md-loader": "^1.1.0",
         "vue-clipboard2": "0.0.8",
         "vue-eslint-parser": "^5.0.0",
@@ -165,7 +157,7 @@
         "vue-loader": "^15.6.2",
         "vue-router": "^3.0.1",
         "vue-server-renderer": "^2.6.6",
-        "vue-template-compiler": "^2.6.6",
+        "vue-template-compiler": "^2.6.10",
         "vue-virtual-scroller": "^0.12.0",
         "vuex": "^3.1.0",
         "webpack": "^4.28.4",

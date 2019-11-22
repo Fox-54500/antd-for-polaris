@@ -61204,11 +61204,12 @@ function getSummaryRows(columns) {
 
     expander.renderExpandIndentCell(rows, fixed);
 
-    var HeaderWrapper = components.header.wrapper;
+    var HeaderWrapper = isSummary ? components.footer.wrapper : components.header.wrapper;
 
+    var wrapperClassName = prefixCls + '-t' + (isSummary ? 'foot' : 'head');
     return h(
       HeaderWrapper,
-      { 'class': prefixCls + '-thead' },
+      { 'class': wrapperClassName },
       [rows.map(function (row, index) {
         return h(_TableHeaderRow__WEBPACK_IMPORTED_MODULE_1__["default"], {
           attrs: {
@@ -61220,6 +61221,7 @@ function getSummaryRows(columns) {
             rows: rows,
             row: row,
             components: components,
+            isSummary: isSummary,
             customHeaderRow: customHeaderRow
           },
           key: index });
@@ -61271,7 +61273,8 @@ var TableHeaderRow = {
     components: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].object,
     height: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].any,
     customHeaderRow: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].func,
-    prefixCls: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].prefixCls
+    prefixCls: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].prefixCls,
+    isSummary: _util_vue_types__WEBPACK_IMPORTED_MODULE_5__["default"].bool
   },
   name: 'TableHeaderRow',
   render: function render(h) {
@@ -61280,7 +61283,8 @@ var TableHeaderRow = {
         height = this.height,
         components = this.components,
         customHeaderRow = this.customHeaderRow,
-        prefixCls = this.prefixCls;
+        prefixCls = this.prefixCls,
+        isSummary = this.isSummary;
 
     var HeaderRow = components.header.row;
     var HeaderCell = components.header.cell;
@@ -61315,7 +61319,10 @@ var TableHeaderRow = {
           headerCellProps.style = babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_3___default()({}, customProps.style, { textAlign: column.align });
           headerCellProps['class'] = classnames__WEBPACK_IMPORTED_MODULE_4___default()(customProps.cls, column['class'], column.className, babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, prefixCls + '-align-' + column.align, !!column.align));
         }
-
+        if (isSummary) {
+          delete headerCellProps['class'];
+          delete headerCellProps.on;
+        }
         if (typeof HeaderCell === 'function') {
           return HeaderCell(h, headerCellProps, children);
         }

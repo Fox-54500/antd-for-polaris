@@ -110,11 +110,12 @@ export default {
 
     expander.renderExpandIndentCell(rows, fixed);
 
-    var HeaderWrapper = components.header.wrapper;
+    var HeaderWrapper = isSummary ? components.footer.wrapper : components.header.wrapper;
 
+    var wrapperClassName = prefixCls + '-t' + (isSummary ? 'foot' : 'head');
     return h(
       HeaderWrapper,
-      { 'class': prefixCls + '-thead' },
+      { 'class': wrapperClassName },
       [rows.map(function (row, index) {
         return h(TableHeaderRow, {
           attrs: {
@@ -126,6 +127,7 @@ export default {
             rows: rows,
             row: row,
             components: components,
+            isSummary: isSummary,
             customHeaderRow: customHeaderRow
           },
           key: index });

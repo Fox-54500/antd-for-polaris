@@ -17,7 +17,8 @@ var TableHeaderRow = {
     components: PropTypes.object,
     height: PropTypes.any,
     customHeaderRow: PropTypes.func,
-    prefixCls: PropTypes.prefixCls
+    prefixCls: PropTypes.prefixCls,
+    isSummary: PropTypes.bool
   },
   name: 'TableHeaderRow',
   render: function render(h) {
@@ -26,7 +27,8 @@ var TableHeaderRow = {
         height = this.height,
         components = this.components,
         customHeaderRow = this.customHeaderRow,
-        prefixCls = this.prefixCls;
+        prefixCls = this.prefixCls,
+        isSummary = this.isSummary;
 
     var HeaderRow = components.header.row;
     var HeaderCell = components.header.cell;
@@ -61,7 +63,10 @@ var TableHeaderRow = {
           headerCellProps.style = _extends({}, customProps.style, { textAlign: column.align });
           headerCellProps['class'] = classNames(customProps.cls, column['class'], column.className, _defineProperty({}, prefixCls + '-align-' + column.align, !!column.align));
         }
-
+        if (isSummary) {
+          delete headerCellProps['class'];
+          delete headerCellProps.on;
+        }
         if (typeof HeaderCell === 'function') {
           return HeaderCell(h, headerCellProps, children);
         }
