@@ -128,7 +128,7 @@
         "mockdate": "^2.0.2",
         "nprogress": "^0.2.0",
         "optimize-css-assets-webpack-plugin": "^5.0.1",
-        "postcss": "^7.0.6",
+        "postcss": "^8.2.10",
         "postcss-loader": "^3.0.0",
         "pre-commit": "^1.2.2",
         "prettier": "^1.18.2",
